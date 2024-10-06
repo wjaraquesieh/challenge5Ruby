@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   def index
+    # list all the products and include the category associate
     @products = Product.includes(:category).all
   end
 

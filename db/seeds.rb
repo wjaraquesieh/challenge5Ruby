@@ -10,13 +10,16 @@
 
 require 'csv'
 
+# Clean all the data
 Product.destroy_all
 Category.destroy_all
 
+# Going through the csv file
 csv_file = Rails.root.join('db/products.csv')
 csv_data = File.read(csv_file)
 products = CSV.parse(csv_data, headers: true)
 
+# Loop to get the information
 products.each do |row|
   category = Category.find_or_create_by(name: row['category'])
   Product.create(
